@@ -1,1 +1,1 @@
-# epam-internship-2020
+# Tasks from EPAM internship 2020
