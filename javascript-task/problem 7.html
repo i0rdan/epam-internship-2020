@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <img data-src="https://ru.js.cx/clipart/solar/venus.jpg" width="600" height="600">
+  <img data-src="https://ru.js.cx/clipart/solar/earth.jpg" width="600" height="600">
+  <img data-src="https://ru.js.cx/clipart/solar/mars.jpg" width="600" height="600">
+  <img data-src="https://ru.js.cx/clipart/solar/jupiter.jpg" width="600" height="600">
+  <script>
+    function isVisible(elem) {
+      let coords = elem.getBoundingClientRect();
+      let windowHeight = document.documentElement.clientHeight;
+      let topVisible = coords.top > 0 && coords.top < windowHeight;
+      let bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
+      return topVisible || bottomVisible;
+    }
+
+    function showVisible() {
+      for (let img of document.querySelectorAll('img')) {
+        let realSrc = img.dataset.src;
+        if (!realSrc) continue;
+
+        if (isVisible(img)) {
+          realSrc += '?nocache=' + Math.random();
+          img.src = realSrc;
+          img.dataset.src = '';
+        }
+      }
+    }
+    window.addEventListener('scroll', showVisible);
+    showVisible();
+  </script>
+
+</body>
+</html>
